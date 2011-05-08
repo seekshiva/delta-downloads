@@ -4,7 +4,7 @@
 <title>Delta Downloads</title>
 <style>
 body {overflow:hidden; font-family:'sans serif'; font-size:small; }
-#lightbox {position:fixed; width:100%; height:100%; top:0; left:0; background-color:rgba(77,97,127,.7); display:none; }
+#lightbox {position:fixed; width:100%; height:100%; top:0; left:0; background-color:rgba(77,97,127,.9); display:none; }
 #searchBox {width:900px; position:relative; top:20px; padding:30px; background-color:rgba(246,246,246,.6);140,140,250,.6); border-radius:13px; border:1px solid #5566BB; z-index:1000; box-shadow:inset -1px -1px 2px #AAAAAA;}
 #autosuggestion {margin-top:30px;}
 #wrapper {position:relative; top:50px; width:970px; padding:0px;  }
@@ -21,17 +21,23 @@ body {overflow:hidden; font-family:'sans serif'; font-size:small; }
 
 #left-col {float:left; width:200px; }
 
-input[type='text'] {color:#666; padding:8px; font-size:x-large; border-radius:12px; border:0; box-shadow:1px 1px 4px #AAAAAA; padding-left:50px; background:#F5F5F5 url('images/SearchIcon.jpg') no-repeat; background-size:45px 45px; }
+input[type='text'] {color:#666; padding:8px; font-size:x-large; border-radius:23px; border:0; box-shadow:1px 1px 4px #AAAAAA; padding-left:50px; background:#F5F5F5 url('images/search.png') no-repeat 0 1px; background-size:43px 43px; }
 input[type='button'] {border:0; box-shadow:1px 1px 4px #888888; margin:5px; border-radius:5px; padding:3px 6px 5px; color:#FFFFFF; font-weight:bold; background:-moz-linear-gradient(center top , #7DA7F0, #6993DC) repeat scroll 0 0 transparent; cursor:pointer; }
 </style>
 <script src="jquery.js"></script>
 <script>
 $(document).ready(function() {
+
+    ///loading the contents of the home page
+    $("#panels").html("Loading... ").load("ajax.php");
+
     $("#q").focus();
 
-    $("#q").keyup(function() {
+    $("#q").keypress(function(e) {
+        if(e.keyCode=="27") $(this).val("");
+    }).keyup(function() {
 	$("#autosuggestion").load("getsuggestions.php?q="+encodeURI($(this).val()));
-    	if($(this).val()=="") {
+        if($(this).val()=="") {
 		$("body").css({"overflow":"scroll"});
 		$("#searchBox").animate(
 			{"top":"20px"}
@@ -57,7 +63,7 @@ $(document).ready(function() {
 <div align="center">
 <div id="searchBox">
 <div aalign="center">
-<label for="q">Search : </label><input type="text" id="q"> <input type="button" value="Go!">
+<label for="q">Search : </label><input type="text" id="q">
 <div id="autosuggestion"></div>
 </div>
 </div>
@@ -88,36 +94,8 @@ $(document).ready(function() {
 
 </div>
 
-
-<div class="panel">
-<a><div class="panel-title">Featured</div></a>
-<div class="panel-contents">
-hi
+<div id="panels">
 </div>
-</div>
-
-<div class="panel">
-<a><div class="panel-title">Most Downloaded</div></a>
-<div class="panel-contents">
-hi
-</div>
-</div>
-
-<div class="panel">
-<a><div class="panel-title">Highest Rated</div></a>
-<div class="panel-contents">
-hi
-</div>
-</div>
-
-<div class="panel">
-<a><div class="panel-title">Recently Added</div></a>
-<div class="panel-contents">
-hi
-</div>
-</div>
-
-
 
 </div>
 </div>
