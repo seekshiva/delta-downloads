@@ -1,3 +1,6 @@
+<?php
+include("functions.lib.php");
+?>
 <!doctype html>
 <html>
 <head>
