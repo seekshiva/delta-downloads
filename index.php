@@ -15,7 +15,6 @@ include("functions.lib.php");
     <div id="searchBox">
       <div aalign="center">
 	<label for="q">Search : </label><input type="text" id="q">
-	<div id="autosuggestion"></div>
       </div>
     </div>
     <div id="wrapper">

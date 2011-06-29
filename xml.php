@@ -11,7 +11,7 @@ $str .=<<<str
 
 str;
 
-$res = mysql_query("SELECT * FROM `apps`");
+$res = mysql_query("SELECT * FROM `apps` WHERE 1 LIMIT 5; ");
 
 while($row = mysql_fetch_assoc($res)) {
 $str.=<<<str
